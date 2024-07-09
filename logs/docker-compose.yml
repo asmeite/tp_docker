@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "666:666"
+    volumes:
+      - ./logs:/usr/local/apache2/logs
+    networks:
+      - webnet
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
+
+volumes:
+  db_data:
